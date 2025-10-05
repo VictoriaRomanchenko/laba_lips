@@ -90,10 +90,11 @@ CL-USER> (append my-list (third my-list))
 
 ```lisp
 (defun make-my-list-o ()
-  (cons 'D
-        (cons (cons 4 (cons 'E (cons 'F nil)))
-              (cons (cons 5 nil)
-                    (cons 'F nil)))))
+  (let ((tail (cons 'F nil)))
+    (cons 'D
+          (cons (cons 4 (cons 'E tail))
+                (cons (cons 5 nil)
+                      tail)))))
 
 (set 'my-list-o (make-my-list-o))
 
